@@ -16,12 +16,12 @@ app.get('/posts', (req, res) => {
     .exec()
     .then(blogposts => {
       res.json(
-      //   {
-      //   blogposts: blogposts.map(
-      //     (blogpost) => blogpost.apiRepr()
-      //   )
-      // }
-      "hi"
+        {
+        blogposts: blogposts.map(
+          (blogpost) => blogpost.apiRepr()
+        )
+      }
+      
       );
     })
     .catch(
