@@ -13,18 +13,18 @@ app.use(bodyParser.json());
 app.get('/posts', (req, res) => {
   Blogpost
     .find() 
-    .limit(1)  
     .exec()
     .then(blogposts => {
       res.json({
         blogposts: blogposts.map(
-          (blogpost) => blogpost.apiRepr())
+          (blogpost) => blogpost.apiRepr()
+        )
       });
     })
     .catch(
       err => {
         console.error(err);
-        res.status(500).json({message: 'Internal server error'});
+        res.status(500).json({message: 'Internal HIHIHIH server error'});
     });
 });
 

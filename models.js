@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const blogPostSchema = mongoose.Schema({
   title: {type: String, required: true},
   content: {type: String, required: true},
-  author: {type: String, required: true},
-  created: {type: String}
+  author: {
+          firstName: String,
+          lastName: String
+      },
+  created:  {type: Date, default: Date.now}
 });
 
 // *virtuals* (http://mongoosejs.com/docs/guide.html#virtuals)
@@ -14,7 +17,7 @@ const blogPostSchema = mongoose.Schema({
 // to generate a human readable string based on the author object
 // we're storing in Mongo.
 blogPostSchema.virtual('authorString').get(function() {
-  return `${this.author.firstName} + ${this.author.lastName}`.trim()});
+  return `${this.author.firstName} ${this.author.lastName}`.trim()});
 
 
 // this is an *instance method* which will be available on all instances
@@ -32,6 +35,6 @@ blogPostSchema.methods.apiRepr = function() {
 
 // note that all instance methods and virtual properties on our
 // schema must be defined *before* we make the call to `.model`.
-const Blogpost = mongoose.model('BlogPost', blogPostSchema);
+const Blogpost = mongoose.model('Blogpost', blogPostSchema);
 
 module.exports = {Blogpost};
