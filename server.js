@@ -14,10 +14,10 @@ app.get('/posts', (req, res) => {
   blogPost
     .find()   
     .exec()
-    .then(blogpost => {
+    .then(blogPosts => {
       res.json({
-        blogpost: blogpost.map(
-          (blogpost) => blogpost.apiRepr())
+        blogPosts: blogPosts.map(
+          (blogPost) => blogPost.apiRepr())
       });
     })
     .catch(
@@ -113,7 +113,7 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
         return reject(err);
       }
       server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
+        console.log(`Your app is listening on port ${port} at ${databaseUrl}`);
         resolve();
       })
       .on('error', err => {
